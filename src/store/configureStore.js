@@ -15,7 +15,7 @@ export default function configureStore(initialState) {
     rootReducer,
     initialState,
     composeEnhancers(applyMiddleware(websocket, thunk, logger)))
-  const wsUrl = 'ws://' + window.location.toString().replace('http://', '')
+    const wsUrl = window.location.origin.replace('http', 'ws') //Replace will work for http and https to ws and wss
   store.dispatch(wsConnect(wsUrl))
 
   if (module.hot) {
